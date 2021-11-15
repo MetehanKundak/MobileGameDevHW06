@@ -27,7 +27,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
         //SyncStateContract.Constants.CURRENT_CONTEXT = context;
 
         thread = new MainThread(getHolder(),this);
-        player = new RectPlayer(new Rect(100,100,100,100), Color.rgb(255,0,0));
+        player = new RectPlayer(new Rect(100,100,200,200), Color.rgb(255,0,0));
         playerPoint = new Point(150,150);
         //manager = new SceneManager();
 

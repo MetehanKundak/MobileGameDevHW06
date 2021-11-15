@@ -2,27 +2,34 @@ package com.example.hw06;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.provider.SyncStateContract;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import androidx.annotation.MainThread;
+//import androidx.annotation.MainThread;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 
     private MainThread thread;
+    private RectPlayer player;
+    private Point playerPoint;
 
-    private SceneManager manager;
+    //private SceneManager manager;
     public GamePanel (Context context){
 
         super(context);
         getHolder().addCallback(this);
-        SyncStateContract.Constants.CURRENT_CONTEXT = context;
+        //SyncStateContract.Constants.CURRENT_CONTEXT = context;
 
         thread = new MainThread(getHolder(),this);
-
-        manager = new SceneManager();
+        player = new RectPlayer(new Rect(100,100,100,100), Color.rgb(255,0,0));
+        playerPoint = new Point(150,150);
+        //manager = new SceneManager();
 
         setFocusable(true);
 
@@ -38,7 +45,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     public void surfaceCreated (SurfaceHolder holder){
 
         thread = new MainThread(getHolder(), this);
-        Constants.INIT_TIME = System.currentTimeMillis();
+        //Constants.INIT_TIME = System.currentTimeMillis();
         thread.setRunning(true);
         thread.start();
 
@@ -57,23 +64,28 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        manager.recieveTouch(event);
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_MOVE:
+                playerPoint.set((int)event.getX(),(int)event.getY());
+
+        }
+
+       // manager.recieveTouch(event);
 
         return true;
         //return super.onTouchEvent(event);
     }
 
     public void update() {
-        manager.update();
+        player.update(playerPoint);
     }
 
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-
-        manager.draw(canvas);
+        canvas.drawColor(Color.WHITE);
+        player.draw(canvas);
     }
 }
-
-
 

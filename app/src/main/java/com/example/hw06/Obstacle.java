@@ -7,7 +7,7 @@ import android.graphics.Rect;
 public class Obstacle implements GameObject {
 
     private Rect rectangle;
-    private Rect rectangle1;
+    private Rect rectangle2;
     private int color;
 
     public Rect getRectangle(){
@@ -17,8 +17,8 @@ public class Obstacle implements GameObject {
     public void incrementY(float y) {
         rectangle.top +=y;
         rectangle.bottom +=y;
-        rectangle1.top +=y;
-        rectangle1.bottom +=y;
+        rectangle2.top +=y;
+        rectangle2.bottom +=y;
     }
 
 
@@ -26,16 +26,16 @@ public class Obstacle implements GameObject {
 
         this.color = color;
         rectangle = new Rect(0,startY,startX,startY+rectHeight);
-        rectangle1 = new Rect(startX +playerGap,startY,Constants.SCREEN_WIDTH,startY+rectHeight);
+        rectangle2 = new Rect(startX +playerGap,startY,Constants.SCREEN_WIDTH,startY+rectHeight);
 
 
     }
 
 
     public boolean playerCollide (RectPlayer player){
-        if (rectangle.contains(player.getRectangle().left,player.getRectangle().top) ||rectangle.contains(player.getRectangle().right,player.getRectangle().top)||rectangle.contains(player.getRectangle().left,player.getRectangle().bottom)||rectangle.contains(player.getRectangle().right,player.getRectangle().bottom))
-            return true;
-        return false;
+        /*if (rectangle.contains(player.getRectangle().left,player.getRectangle().top) ||rectangle.contains(player.getRectangle().right,player.getRectangle().top)||rectangle.contains(player.getRectangle().left,player.getRectangle().bottom)||rectangle.contains(player.getRectangle().right,player.getRectangle().bottom))
+            return true;*/
+        return Rect.intersects(rectangle, player.getRectangle())||Rect.intersects(rectangle2,getRectangle());
     }
 
     @Override
@@ -43,6 +43,7 @@ public class Obstacle implements GameObject {
         Paint paint = new Paint();
         paint.setColor(color);
         canvas.drawRect(rectangle, paint);
+        canvas.drawRect(rectangle2, paint);
 
     }
 

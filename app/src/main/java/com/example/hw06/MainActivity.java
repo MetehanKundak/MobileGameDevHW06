@@ -1,5 +1,5 @@
 package com.example.hw06;
-
+//Metehan Kundak MobileGameDev
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;

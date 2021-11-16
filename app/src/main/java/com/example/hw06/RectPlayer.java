@@ -1,5 +1,5 @@
 package com.example.hw06;
-
+//Metehan Kundak MobileGameDev
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -7,8 +7,8 @@ import android.graphics.Rect;
 
 public class RectPlayer implements GameObject{
 
-    private Rect rectangle;
-    private int color;
+    private final Rect rectangle;
+    private final int color;
 
     public Rect getRectangle(){
         return rectangle;

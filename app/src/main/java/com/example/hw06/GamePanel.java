@@ -1,12 +1,12 @@
 package com.example.hw06;
-
+//Metehan Kundak MobileGameDev
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.provider.SyncStateContract;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -16,8 +16,8 @@ import android.view.SurfaceView;
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 
     private MainThread thread;
-    private Rect r = new Rect();
-    private RectPlayer player;
+    private final Rect r = new Rect();
+    private final RectPlayer player;
     private Point playerPoint;
     private ObstacleManager obstacleManager;
     private boolean movingPlayer = false;
@@ -76,6 +76,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             retry = false;
         }
     }
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
@@ -127,19 +128,19 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             Paint paint = new Paint();
             paint.setTextSize(100);
             paint.setColor(Color.MAGENTA);
-            drawCenterText(canvas, paint, "Game Over");
+            drawCenterText(canvas, paint);
 
         }
     }
-    private void drawCenterText(Canvas canvas, Paint paint, String text){
+    private void drawCenterText(Canvas canvas, Paint paint){
         paint.setTextAlign(Paint.Align.LEFT);
         canvas.getClipBounds(r);
         int cHeight = r.height();
         int cWidth = r.width();
-        paint.getTextBounds(text, 0, text.length(),r);
+        paint.getTextBounds("Game Over", 0, "Game Over".length(),r);
         float x = cWidth / 2f-r.width()/ 2f- r.left;
         float y = cHeight / 2f+r.height() / 2f- r.bottom;
-        canvas.drawText (text,x,y,paint);
+        canvas.drawText ("Game Over",x,y,paint);
 
 
     }

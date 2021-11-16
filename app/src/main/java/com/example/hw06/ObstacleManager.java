@@ -1,5 +1,5 @@
 package com.example.hw06;
-
+//Metehan Kundak MobileGameDev
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -7,14 +7,14 @@ import android.graphics.Paint;
 import java.util.ArrayList;
 
 public class ObstacleManager {
-    private ArrayList<Obstacle> obstacles;
-    private int playerGap;
-    private int obstacleGap;
-    private int obstacleHeight;
-    private int color;
+    private final ArrayList<Obstacle> obstacles;
+    private final int playerGap;
+    private final int obstacleGap;
+    private final int obstacleHeight;
+    private final int color;
 
     private long startTime;
-    private long initTime;
+    private final long initTime;
 
     private int score = 0;
 

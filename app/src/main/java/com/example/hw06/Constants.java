@@ -1,5 +1,5 @@
 package com.example.hw06;
-
+//Metehan Kundak MobileGameDev
 import android.content.Context;
 
 public class Constants {
